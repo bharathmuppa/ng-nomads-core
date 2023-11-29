@@ -1,0 +1,18 @@
+import {createFeatureSelector, createSelector} from "@ngrx/store";
+
+import { __name@upperCamelCase__State} from "./model";
+
+export const  __name@camelCase__Feature = createFeatureSelector< __name@upperCamelCase__State>('__name@camelCase__State');
+
+export const create__name@upperCamelCase__Requested = createSelector( __name@camelCase__Feature, (state) => state.create__name@upperCamelCase__Requested);
+
+export const  __name@camelCase__s = createSelector( __name@camelCase__Feature, (state) => state. __name@camelCase__s);
+
+export const selected__name@upperCamelCase__Details = createSelector( __name@camelCase__Feature, (state) => state.selected__name@upperCamelCase__Details);
+
+export const selected__name@upperCamelCase__CaseProperties = createSelector( __name@camelCase__Feature, (state) => state.selected__name@upperCamelCase__CaseProperties);
+
+
+export const selected__name@upperCamelCase__CaseActions = createSelector( __name@camelCase__Feature, (state) => state.selected__name@upperCamelCase__CaseActions);
+
+export const selected__name@upperCamelCase__CaseActionsRequestLoadingStatus = createSelector( __name@camelCase__Feature, (state) => state.selected__name@upperCamelCase__CaseActionsRequestLoadingStatus);

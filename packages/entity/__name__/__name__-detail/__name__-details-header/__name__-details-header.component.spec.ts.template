@@ -1,0 +1,21 @@
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+
+import {__name@camelCase__DetailsHeaderComponent} from './__name__-details-header.component';
+
+describe('__name@camelCase__DetailsHeaderComponent', () => {
+  let component: __name@camelCase__DetailsHeaderComponent;
+  let fixture: ComponentFixture<__name@camelCase__DetailsHeaderComponent>;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [__name@camelCase__DetailsHeaderComponent]
+    });
+    fixture = TestBed.createComponent(__name@camelCase__DetailsHeaderComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

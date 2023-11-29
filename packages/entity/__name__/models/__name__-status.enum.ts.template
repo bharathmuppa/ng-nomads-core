@@ -1,0 +1,5 @@
+
+ //TODO: Add all your status enum
+export enum __name@upperCase___STATUS {
+  
+}

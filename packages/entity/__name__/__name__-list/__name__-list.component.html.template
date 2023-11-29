@@ -1,0 +1,55 @@
+<div class="h-full overflow-hidden">
+  <div>
+    <aal-analytics-panel [panelData]="$any($panelDataMultiple | async)" [panelExpanded]="true"
+                         [mode]="'multiple'" [cardLabelKey]="'notificationTypeLabel'"
+                         [cardCountKey]="'notificationCount'"></aal-analytics-panel>
+    <!--Panel loader here-->
+  </div>
+    <div >
+      <cdk-virtual-scroll-viewport appendOnly #scroller itemSize="100" minBufferPx="200" maxBufferPx="500" class="h-[calc(100vh-10.25rem)] overflow-y-auto">
+        <mat-nav-list class="!flex !flex-col !gap-2 !m-2" [disableRipple]="true">
+          <mat-list-item *cdkVirtualFor="let __name@camelCase__ of __name@camelCase__s; templateCacheSize: 0;trackBy: unique__name@upperCamelCase__;"
+                         class="flex flex-row justify-start items-center !h-[100px] p-4 !box-border !bg-white mat-elevation-z1 !rounded-xl" (click)="open__name@upperCamelCase__Details(__name@camelCase__)" >
+            <div class="flex flex-row  justify-between items-center !color-black">
+              <app-__name__-summary class="flex" [__name@camelCase__]="__name@camelCase__"></app-__name__-summary>
+              <div class="flex flex-row  gap-4 items-center justify-start">
+
+                <mat-divider [vertical]="true"
+                             class="color-grey place-self-stretch"></mat-divider>
+
+                <div class="flex flex-col !w-[15rem]">
+                  <span class="label text-xs truncate">Owning Unit</span>
+                  <span [matTooltip]="__name@camelCase__?.owning_unit_name || ''"
+                        class="truncate text-s leading-[20px] font-normal color-black">{{__name@camelCase__?.owning_unit_number}} <b>&middot;</b> {{__name@camelCase__?.owning_unit_name}}</span>
+                </div>
+
+                <mat-divider [vertical]="true"
+                             class="color-grey place-self-stretch"></mat-divider>
+
+                <div class="flex flex-col !w-[5rem]">
+                  <span class="label text-xs truncate">Business Line</span>
+                  <span
+                    class="truncate text-s leading-[20px] font-normal color-black">{{__name@camelCase__?.business_line}}</span>
+                </div>
+
+                <mat-divider [vertical]="true"
+                             class="color-grey place-self-stretch"></mat-divider>
+                <div class="w-[7rem]">
+                </div>
+          
+
+                <mat-divider [vertical]="true"
+                             class="color-grey place-self-stretch"></mat-divider>
+                <div class="w-[6rem]">
+                
+                </div>
+      
+
+              </div>
+            </div>
+          </mat-list-item>
+        </mat-nav-list>
+      </cdk-virtual-scroll-viewport>
+    </div>
+</div>
+

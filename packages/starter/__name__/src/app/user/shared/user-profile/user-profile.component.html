@@ -1,0 +1,58 @@
+<button mat-icon-button *ngIf="userProfile && userProfile.user_id; else emptyUserIcon"
+        [matMenuTriggerFor]="userMenu" class="!h-[32px] !w-[32px]">
+  <img [ngSrc]="userProfile.user_id | userImage"
+       alt="User Profile"
+       class="rounded-full" fill=""/>
+</button>
+
+<ng-template #emptyUserIcon>
+  <button mat-icon-button class="!h-[32px] !w-[32px]">
+    <mat-icon>user</mat-icon>
+  </button>
+</ng-template>
+
+<mat-menu #userMenu="matMenu" [overlapTrigger]="false">
+  <mat-toolbar class="user-profile-toolbar">
+    <mat-toolbar-row fxLayoutGap="1rem">
+      <span>User Profile</span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <mat-card>
+    <mat-card-content>
+      <div class="flex flex-col gap-[2rem]">
+        <div class="flex flex-col gap-[1rem]">
+          <div class="flex flex-row gap-[1rem]">
+            <div class="w-[3rem] h-[3rem] relative">
+              <img *ngIf="userProfile && userProfile.user_id " [ngSrc]="userProfile.user_id | userImage"
+                   mat-card-avatar
+                   class="rounded-full" fill="" />
+            </div>
+            <div>
+              <span class="title overflow-ellipsis">{{ userProfile?.full_name }}
+                - {{ userProfile?.abbreviation}}</span>
+            </div>
+          </div>
+          <div class="flex flex-row gap-[1.5rem]">
+            <div class="w-[40%]">
+              <span>Role(s)</span>
+              <div *ngFor="let role of userProfile?.roles">
+                <span
+                  class="items overflow-ellipsis">{{ role|normalizeUserRole }}</span>
+              </div>
+            </div>
+            <div class="w-[60%]">
+              <span>Group(s)</span>
+              <div *ngFor="let group of userProfile?.groups">
+                <span class="items overflow-ellipsis">{{ group }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button (click)="logout()"> Logout</button>
+    </mat-card-actions>
+  </mat-card>
+</mat-menu>
+

@@ -1,0 +1,21 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import {  __name@upperCamelCase__CaseActionDetailComponent } from './__name__-case-action-detail.component';
+
+describe(' __name@upperCamelCase__CaseActionDetailComponent', () => {
+  let component:  __name@upperCamelCase__CaseActionDetailComponent;
+  let fixture: ComponentFixture< __name@upperCamelCase__CaseActionDetailComponent>;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [ __name@upperCamelCase__CaseActionDetailComponent]
+    });
+    fixture = TestBed.createComponent( __name@upperCamelCase__CaseActionDetailComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

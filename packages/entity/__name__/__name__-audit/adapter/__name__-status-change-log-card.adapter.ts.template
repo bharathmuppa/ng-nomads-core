@@ -1,0 +1,22 @@
+import {map, Observable} from "rxjs";
+import {ChangeLogs} from "../../models/change-log";
+import {
+   __name@upperCamelCase__StatusChangeLogCard,
+   __name@upperCamelCase__StatusChangeLogCards
+} from "../model/__name__-status-change-log-card";
+
+export class  __name@upperCamelCase__StatusChangeLogCardAdapter {
+  public static transform($changLogs: Observable<ChangeLogs>): Observable< __name@upperCamelCase__StatusChangeLogCards> {
+    return $changLogs.pipe(map(changLogs => {
+      return changLogs.map(changeLog => {
+        return {
+          mainDescription: '',
+          subDescription: '',
+          status: changeLog.new_value,
+          userId: changeLog.user_id,
+          modifiedOn: changeLog.modified_on
+        } as  __name@upperCamelCase__StatusChangeLogCard;
+      });
+    }));
+  }
+}

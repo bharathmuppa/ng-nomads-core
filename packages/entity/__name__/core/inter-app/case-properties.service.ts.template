@@ -1,0 +1,55 @@
+import {Injectable} from '@angular/core';
+import {select, Store} from "@ngrx/store";
+import {Modes} from "@ng-nomads-angular/common";
+
+import {selected__name@upperCamelCase__CaseProperties} from "../../store/selectors";
+import {__name@upperCamelCase__State} from "../../store/model";
+import {CaseProperties} from "../../models/case-actions.model";
+
+@Injectable({
+  providedIn: 'root'
+})
+export class CasePropertiesService {
+
+  private caseProperties!: CaseProperties;
+
+  constructor(private __name@camelCase__Store: Store<{
+    __name@camelCase__State: __name@upperCamelCase__State
+  }>) {
+    this.__name@camelCase__Store.pipe(select(selected__name@upperCamelCase__CaseProperties)).subscribe((caseProperties: CaseProperties | undefined) => {
+      if (!caseProperties) {
+        return;
+      }
+
+      this.caseProperties = caseProperties;
+    });
+  }
+
+  /**
+   * Receives properties(only keys) of an entity and assign accessible mode for each of them
+   * @param keys
+   * @param prefix
+   */
+  assignCasePropertiesForEachProperty(keys: string[], prefix?: string): {
+    [key: string]: Modes
+  } {
+    if (!this.caseProperties) {
+      console.error("Case Properties are not yet loaded into system")
+      return {};
+    }
+    const keyMap: { [key: string]: Modes } = {};
+    keys.forEach(key => {
+      const fullPath = prefix ? prefix + key : key;
+      if (this.caseProperties.updatable_property_regexps?.find(regex => fullPath.match(regex))) {
+        keyMap[key] = Modes.EDIT;
+      } else if (this.caseProperties.readable_property_regexps?.find(regex => fullPath.match(regex))) {
+        keyMap[key] = Modes.PROTECTED;
+      } else if (this.caseProperties.unreadable_property_regexps?.find(regex => fullPath.match(regex))) {
+        keyMap[key] = Modes.PRIVATE;
+      }else{
+        keyMap[key] = Modes.PROTECTED;
+      }
+    });
+    return keyMap;
+  }
+}

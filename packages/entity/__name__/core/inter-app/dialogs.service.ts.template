@@ -1,0 +1,34 @@
+import {Injectable} from '@angular/core';
+import {MatDialog, MatDialogRef} from "@angular/material/dialog";
+
+
+import {
+  __name@upperCamelCase__CaseActionDetailComponent
+} from "../../__name__-case-action/__name__-case-action-detail/__name__-case-action-detail.component";
+import {CaseActionConfig} from "../../models/case-actions.model";
+
+@Injectable({
+  providedIn: 'root'
+})
+export class DialogsService {
+
+  commonDialogConfiguration = {
+    width: '70vw',
+    enterAnimationDuration: '22ms',
+    exitAnimationDuration: '22ms'
+  };
+
+  constructor(public dialog: MatDialog) {
+  }
+
+
+  open__name@upperCamelCase__CaseActionDetailDialog(__name@camelCase__Id: string, caseActionConfig?: CaseActionConfig): MatDialogRef<__name@upperCamelCase__CaseActionDetailComponent> {
+    return this.dialog.open(__name@upperCamelCase__CaseActionDetailComponent, {
+      ...this.commonDialogConfiguration,
+      data: {
+        __name@camelCase__Id,
+        caseActionConfig
+      }
+    });
+  }
+}

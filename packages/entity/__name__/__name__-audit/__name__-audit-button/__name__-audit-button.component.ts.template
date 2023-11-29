@@ -1,0 +1,46 @@
+import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {AALButtonOverlayCardModule, AALCardSummaryModule} from "@ng-nomads-angular/material";
+import {MatIconModule} from "@angular/material/icon";
+
+import { __name@upperCamelCase__StatusChangeLogCard} from "../model/__name__-status-change-log-card";
+import { __name@upperCamelCase__Service} from "../../core/api/__name__.service";
+import {
+   __name@upperCamelCase__StatusChangeLogCardAdapter
+} from "../adapter/__name__-status-change-log-card.adapter";
+import {Observable} from "rxjs";
+import { __name@upperCamelCase__StatusLabelPipe} from "../../shared/adapters/__name__-status-label.adapter";
+import {Router} from "@angular/router";
+
+@Component({
+  selector: 'app-__name__-audit-button',
+  standalone: true,
+  imports: [CommonModule, AALButtonOverlayCardModule, AALCardSummaryModule, MatIconModule,  __name@upperCamelCase__StatusLabelPipe],
+  templateUrl: './__name__-audit-button.component.html',
+  styleUrls: ['./__name__-audit-button.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class  __name@upperCamelCase__AuditButtonComponent implements OnInit{
+  $listDetails!: Observable< __name@upperCamelCase__StatusChangeLogCard[]>;
+
+  @Input({required: true})
+   __name@camelCase__Id!: string;
+
+  constructor(private  __name@camelCase__Service:  __name@upperCamelCase__Service, private router: Router) {
+  }
+
+  ngOnInit(): void {
+
+  }
+
+  async showAll() {
+    await this.router.navigate([' __name@camelCase__s', this. __name@camelCase__Id, 'audit']);
+  }
+
+    protected readonly onclick = onclick;
+
+  onClick($event: MouseEvent) {
+    this.$listDetails =  __name@upperCamelCase__StatusChangeLogCardAdapter.transform(this. __name@camelCase__Service.getChangeLogOfStatus(this. __name@camelCase__Id));
+    $event.stopPropagation();
+  }
+}

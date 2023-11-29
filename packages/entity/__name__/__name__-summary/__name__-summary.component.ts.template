@@ -1,0 +1,20 @@
+import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
+import { CommonModule } from '@angular/common';
+import {__name@upperCamelCase__} from "../models/__name__.model";
+import {MatIconModule} from "@angular/material/icon";
+import {__name@upperCamelCase__StatusLabelPipe} from "../shared/adapters/__name__-status-label.adapter";
+import {MatTooltipModule} from "@angular/material/tooltip";
+
+
+@Component({
+  selector: 'app-__name__-summary',
+  standalone: true,
+  imports: [CommonModule, MatIconModule, __name@upperCamelCase__StatusLabelPipe, MatTooltipModule],
+  templateUrl: './__name__-summary.component.html',
+  styleUrls: ['./__name__-summary.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class __name@upperCamelCase__SummaryComponent {
+
+  @Input() __name@camelCase__!: __name@upperCamelCase__;
+}

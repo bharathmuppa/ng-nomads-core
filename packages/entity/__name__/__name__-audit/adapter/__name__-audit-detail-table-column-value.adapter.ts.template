@@ -1,0 +1,20 @@
+import {Pipe, PipeTransform} from "@angular/core";
+
+@Pipe({
+  name: ' __name@camelCase__AuditDetailTableColumnValue',
+  standalone: true
+})
+export class  __name@upperCamelCase__AuditDetailTableColumnValuePipe implements PipeTransform {
+
+
+  public transform(element: any, property: string): string {
+    //'property', 'old_value', 'new_value', 'modified_by', 'modified_on'
+    if(property === 'property') {
+      return "Property";
+    }
+
+    return element[property];
+
+  }
+
+}

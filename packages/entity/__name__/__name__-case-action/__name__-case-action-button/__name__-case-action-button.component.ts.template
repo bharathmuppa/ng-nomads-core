@@ -1,0 +1,46 @@
+import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
+import { CommonModule } from '@angular/common';
+import {AALButtonContainedModule} from "@ng-nomads-angular/material";
+import {Store} from "@ngrx/store";
+
+import {CASE_ACTION_CONFIGS, CaseAction} from "../../models/case-actions.model";
+import {CaseActionLabelPipe} from "../../shared/adapters/case-action-label.pipe";
+import {DialogsService} from "../../core/inter-app/dialogs.service";
+import { __name@upperCamelCase__Service} from "../../core/api/__name__.service";
+import { __name@upperCamelCase__State} from "../../store/model";
+import { __name@camelCase__sEntityActions} from "../../store/actions";
+
+@Component({
+  selector: 'app-__name__-case-action-button',
+  standalone: true,
+  imports: [CommonModule, AALButtonContainedModule, CaseActionLabelPipe],
+  templateUrl: './__name__-case-action-button.component.html',
+  styleUrls: ['./__name__-case-action-button.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class  __name@upperCamelCase__CaseActionButtonComponent {
+
+  @Input()
+   __name@camelCase__Id!: string;
+
+  @Input()
+  caseAction!: CaseAction;
+
+  constructor(private dialogService: DialogsService, private  __name@camelCase__Service:  __name@upperCamelCase__Service,  private  __name@camelCase__Store: Store<{
+     __name@camelCase__State:  __name@upperCamelCase__State
+  }>) {
+
+  }
+
+  onButtonClick(caseActionName: string) {
+    const caseActionConfig = CASE_ACTION_CONFIGS[caseActionName];
+
+    if(caseActionConfig.payload !== undefined) {
+      this.dialogService.open__name@upperCamelCase__CaseActionDetailDialog(this.__name@camelCase__Id, caseActionConfig).afterClosed().subscribe((response: any) => {
+        this.__name@camelCase__Store.dispatch( __name@camelCase__sEntityActions.__name@camelCase__CaseActionPerformed(this.__name@camelCase__Id, this.caseAction.case_action, response.data));
+      });
+    } else {
+      this.__name@camelCase__Store.dispatch( __name@camelCase__sEntityActions.__name@camelCase__CaseActionPerformed(this.__name@camelCase__Id, this.caseAction.case_action));
+    }
+  }
+}

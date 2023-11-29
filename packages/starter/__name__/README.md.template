@@ -1,0 +1,13 @@
+# __name__
+This Project is generated from ng-nomads starter
+
+## Commands 
+- To Create an entity `ng-nomads entity --name=<entity name>`
+
+## References
+- https://tailwindcss.com/docs/guides/angular
+- https://material.angular.io/components/sidenav/overview
+- https://angular.io/guide/content-projection
+- https://itnext.io/crafting-a-resizable-sidenav-in-angular-4cdb77bd441a
+- [https://www.educative.io/answers/how-to-create-ngx-charts-linear-gauge-chart-in-angular](Installing NGX charts)
+- [https://stackoverflow.com/questions/60807201/how-to-use-maticonregistry-and-fontawesome-for-facebook-icon](register forms)

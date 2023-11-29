@@ -1,0 +1,29 @@
+import {Location} from "../../models/document.model";
+
+export type __name@upperCamelCase__LocationsOverlayData = Map<string, OverlayData>;
+
+export interface OverlayData {
+  title?: string;
+  totalItems?: string;
+  categories: Categories;
+}
+
+export interface Category {
+  name: string;
+  totalItems: string;
+  subCategories: SubCategories;
+}
+
+export interface SubCategory {
+  totalItems: number;
+  items: Items;
+}
+
+export interface Item extends Location {
+
+}
+
+
+export type Categories = Category[];
+export type SubCategories = SubCategory[];
+export type Items = Item[];

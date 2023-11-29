@@ -1,0 +1,66 @@
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Input
+} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {select, Store} from "@ngrx/store";
+import {Observable} from "rxjs";
+import {MatExpansionModule} from "@angular/material/expansion";
+import {UntypedFormBuilder} from "@angular/forms";
+import {MatButtonModule} from "@angular/material/button";
+
+import {
+  __name@upperCamelCase__DetailsHeaderComponent
+} from "./__name__-details-header/__name__-details-header.component";
+import {DialogsService} from "../core/inter-app/dialogs.service";
+import {__name@upperCamelCase__Service} from "../core/api/__name__.service";
+import {__name@upperCamelCase__} from "../models/__name__.model";
+import {__name@upperCamelCase__State} from "../store/model";
+import {__name@camelCase__sEntityActions} from "../store/actions";
+import {UserService} from "../../user/core/api/user.service";
+import {selected__name@upperCamelCase__CaseActions, selected__name@upperCamelCase__Details} from "../store/selectors";
+import {
+  __name@upperCamelCase__DetailsFooterComponent
+} from "./__name__-details-footer/__name__-details-footer.component";
+import {CaseActions} from "../models/case-actions.model";
+
+
+@Component({
+  selector: 'app-__name__-detail',
+  standalone: true,
+  imports: [CommonModule, __name@upperCamelCase__DetailsHeaderComponent, __name@upperCamelCase__DetailsFooterComponent, MatExpansionModule, MatButtonModule],
+  templateUrl: './__name__-detail.component.html',
+  styleUrls: ['./__name__-detail.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class __name@upperCamelCase__DetailComponent {
+
+  __name@camelCase__Id?: string | null;
+  __name@camelCase__: __name@upperCamelCase__ = {} as __name@upperCamelCase__;
+  caseActions$: Observable<CaseActions | undefined>;
+
+  @Input()
+  set id(__name@camelCase__Id: string) {
+    this.__name@camelCase__Id = __name@camelCase__Id;
+    this.__name@camelCase__Store.dispatch(__name@camelCase__sEntityActions.__name@camelCase__DetailsRequested(__name@camelCase__Id));
+  }
+
+  constructor(private formBuilder: UntypedFormBuilder, private __name@camelCase__Store: Store<{
+    __name@camelCase__State: __name@upperCamelCase__State
+  }>, private dialogService: DialogsService, private __name@camelCase__Service: __name@upperCamelCase__Service, private userService: UserService, private cd: ChangeDetectorRef) {
+
+    this.__name@camelCase__Store.pipe(select(selected__name@upperCamelCase__Details)).subscribe((__name@camelCase__: __name@upperCamelCase__ | undefined) => {
+      if(!__name@camelCase__){
+        return;
+      }
+      this.__name@camelCase__ = __name@camelCase__;
+      this.cd.markForCheck();
+    });
+
+    this.caseActions$ = this.__name@camelCase__Store.pipe(select(selected__name@upperCamelCase__CaseActions));
+  }
+
+
+}

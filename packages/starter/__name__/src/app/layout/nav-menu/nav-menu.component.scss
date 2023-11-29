@@ -1,0 +1,47 @@
+@use '@ng-nomads-angular/theme' as *;
+
+.aal-nav-menu {
+
+  .aal-nav-menu__list-item{
+    .mat-icon, .button-with-icon-and-text__text {
+      color: black !important;
+    }
+  }
+
+  &.aal-nav-menu--compact {
+    -webkit-transition: width 0.2s, height 0.2s, margin 0.2s, -webkit-transform 0.2s;
+    transition: width 0.2s, height 0.2s, margin 0.2s, transform 0.2s;
+    width: 12rem;
+  }
+
+  &.aal-nav-menu--cozy {
+    -webkit-transition: width 0.2s, -webkit-transform 0.2s;
+    transition: width 0.2s, transform 0.2s;
+    width: 4.5rem;
+  }
+
+  .list-item-with-icon-and-text {
+    /* @Overriding: default mat icon class */
+    .mat-icon, .button-with-icon-and-text__text {
+      color: $aal--mat-secondary !important;
+    }
+
+    border: 2px solid $aal--mat-secondary;
+    background: #f5f5f5;
+    width: auto;
+    color: $aal--mat-secondary !important;
+    border-radius: 3.5rem;
+
+    &.button-with-icon-and-text--compact {
+      width: 10rem;
+      -webkit-transition: width 0.2s, -webkit-transform 0.2s;
+      transition: width 0.2s, transform 0.2s;
+    }
+
+    &.button-with-icon-and-text--cozy {
+      width: 3.25rem;
+      -webkit-transition: width 0.2s, -webkit-transform 0.2s;
+      transition: width 0.1s, transform 0.2s;
+    }
+  }
+}

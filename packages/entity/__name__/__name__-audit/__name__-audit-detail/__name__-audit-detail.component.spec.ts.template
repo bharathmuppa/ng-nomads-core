@@ -1,0 +1,21 @@
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+
+import { __name@upperCamelCase__AuditDetailComponent} from './__name__-audit-detail.component';
+
+describe(' __name@upperCamelCase__AuditDetailComponent', () => {
+  let component:  __name@upperCamelCase__AuditDetailComponent;
+  let fixture: ComponentFixture< __name@upperCamelCase__AuditDetailComponent>;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [ __name@upperCamelCase__AuditDetailComponent]
+    });
+    fixture = TestBed.createComponent( __name@upperCamelCase__AuditDetailComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

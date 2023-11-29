@@ -1,0 +1,66 @@
+import {createReducer, on} from "@ngrx/store";
+
+import { __name@upperCamelCase__State} from "./model";
+import {__name@camelCase__sEntityActions} from "./actions";
+
+
+const initial__name@upperCamelCase__State:  __name@upperCamelCase__State = {
+__name@camelCase__s: new Map(),
+}
+export const __name@camelCase__Reducers = createReducer(initial__name@upperCamelCase__State,
+  on(__name@camelCase__sEntityActions.__name@camelCase__sListLoaded, (initial__name@upperCamelCase__State:  __name@upperCamelCase__State, {__name@camelCase__s}) => {
+    let new__name@upperCamelCase__sList = new Map(__name@camelCase__s.map((__name@camelCase__ => [__name@camelCase__.id, __name@camelCase__])));
+    return {
+      ...initial__name@upperCamelCase__State, ...{
+        __name@camelCase__s: new__name@upperCamelCase__sList
+      },
+      __name@camelCase__sLoading: false,
+      __name@camelCase__sLoadingFailed: false
+    };
+  }),
+  on(__name@camelCase__sEntityActions.__name@camelCase__sListLoadingStatus, (initial__name@upperCamelCase__State:  __name@upperCamelCase__State, {__name@camelCase__sLoadingStatus}) => {
+    return {...initial__name@upperCamelCase__State, __name@camelCase__sLoading:__name@camelCase__sLoadingStatus};
+  }),
+  on(__name@camelCase__sEntityActions.__name@camelCase__DetailsRequestCompleted, (initial__name@upperCamelCase__State:  __name@upperCamelCase__State, {__name@camelCase__}) => {
+    return {...initial__name@upperCamelCase__State, selected__name @upperCamelCase__Details:__name@camelCase__};
+  }),
+  on(__name@camelCase__sEntityActions.__name@camelCase__DetailsLoadingStatus, (initial__name@upperCamelCase__State:  __name@upperCamelCase__State, {__name@camelCase__DetailsLoadingStatus}) => {
+    return {...initial__name@upperCamelCase__State,__name@camelCase__DetailsLoadingStatus:__name@camelCase__DetailsLoadingStatus};
+  }),
+  on(__name@camelCase__sEntityActions.__name@camelCase__DetailsUpdateCompleted, (initial__name@upperCamelCase__State:  __name@upperCamelCase__State, {__name@camelCase__}) => {
+    return {...initial__name@upperCamelCase__State, selected__name @upperCamelCase__Details:__name@camelCase__};
+  }),
+  on(__name@camelCase__sEntityActions.__name@camelCase__DetailsUpdateLoadingStatus, (initial__name@upperCamelCase__State:  __name@upperCamelCase__State, {__name@camelCase__DetailsUpdateLoadingStatus}) => {
+    return {
+      ...initial__name@upperCamelCase__State,
+   __name@camelCase__sLoading: false,
+ __name@camelCase__DetailsLoadingStatus:__name@camelCase__DetailsUpdateLoadingStatus
+    };
+  }),
+  on(__name@camelCase__sEntityActions.__name@camelCase__CasePropertiesRequestCompleted, (initial__name@upperCamelCase__State:  __name@upperCamelCase__State, {caseProperties})=>{
+    return {
+      ...initial__name@upperCamelCase__State,
+      selected__name @upperCamelCase__CaseProperties: caseProperties
+    }
+  }),
+  on(__name@camelCase__sEntityActions.__name@camelCase__CreationRequested, (initial__name@upperCamelCase__State:  __name@upperCamelCase__State) => {
+    return {...initial__name@upperCamelCase__State, create__name@upperCamelCase__Requested: true};
+  }),
+  on(__name@camelCase__sEntityActions.__name@camelCase__CreationCompleted, (initial__name@upperCamelCase__State:  __name@upperCamelCase__State) => {
+    return {...initial__name@upperCamelCase__State, create__name@upperCamelCase__Requested: false};
+  }),
+  on(__name@camelCase__sEntityActions.__name@camelCase__CreationLoadingStatus, (initial__name@upperCamelCase__State:  __name@upperCamelCase__State, {__name@camelCase__CreationLoadingStatus}) => {
+    return {...initial__name@upperCamelCase__State, create__name@upperCamelCase__RequestedStatus:__name@camelCase__CreationLoadingStatus};
+  }),
+  on(__name@camelCase__sEntityActions.__name@camelCase__CaseActionsRequestCompleted, (initial__name@upperCamelCase__State:  __name@upperCamelCase__State, {caseActions}) => {
+    return {...initial__name@upperCamelCase__State, selected__name @upperCamelCase__CaseActions: caseActions};
+  }),
+  on(__name@camelCase__sEntityActions.__name@camelCase__CaseActionsRequestLoadingStatus, (initial__name@upperCamelCase__State:  __name@upperCamelCase__State, {__name@camelCase__CaseActionsRequestLoadingStatus}) => {
+    return {...initial__name@upperCamelCase__State, selected__name @upperCamelCase__CaseActionsRequestLoadingStatus:__name@camelCase__CaseActionsRequestLoadingStatus};
+  }),
+  on(__name@camelCase__sEntityActions.__name@camelCase__CaseActionCompleted, (initial__name@upperCamelCase__State:  __name@upperCamelCase__State, {caseActionCompleted}) => {
+    return {...initial__name@upperCamelCase__State,
+      selected__name @upperCamelCase__CaseActions: caseActionCompleted?.case_permissions?.case_actions,
+      selected__name @upperCamelCase__CaseProperties: caseActionCompleted?.case_permissions?.case_properties};
+  })
+);

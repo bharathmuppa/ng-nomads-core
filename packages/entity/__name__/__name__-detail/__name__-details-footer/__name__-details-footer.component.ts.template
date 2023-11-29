@@ -1,0 +1,36 @@
+import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {MatIconModule} from "@angular/material/icon";
+import {AALObjectInformationModule} from "@ng-nomads-angular/material";
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatDividerModule} from "@angular/material/divider";
+
+import {
+   __name@upperCamelCase__AuditButtonComponent
+} from "../../__name__-audit/__name__-audit-button/__name__-audit-button.component";
+import {
+   __name@upperCamelCase__CaseActionButtonComponent
+} from "../../__name__-case-action/__name__-case-action-button/__name__-case-action-button.component";
+import {
+  CASE_ACTION_CONFIGS,
+  CaseAction,
+  CaseActions
+} from "../../models/case-actions.model";
+
+@Component({
+  selector: 'app-__name__-details-footer',
+  standalone: true,
+  imports: [CommonModule, MatIconModule, AALObjectInformationModule, MatToolbarModule, MatDividerModule,  __name@upperCamelCase__AuditButtonComponent,  __name@upperCamelCase__CaseActionButtonComponent],
+  templateUrl: './__name__-details-footer.component.html',
+  styleUrls: ['./__name__-details-footer.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class  __name@upperCamelCase__DetailsFooterComponent {
+  @Input()
+   __name@camelCase__Id!: string;
+
+  @Input({transform: (caseActions:CaseActions) => caseActions?.filter((caseAction: CaseAction)=> caseAction.is_allowed
+      && !CASE_ACTION_CONFIGS[caseAction?.case_action]?.isSystem)})
+  caseActions?: CaseActions;
+
+}

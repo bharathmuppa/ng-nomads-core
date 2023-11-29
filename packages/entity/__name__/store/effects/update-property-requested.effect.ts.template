@@ -1,0 +1,37 @@
+import {Actions, createEffect, ofType} from "@ngrx/effects";
+import {inject} from "@angular/core";
+import {Store} from "@ngrx/store";
+
+import {catchError, exhaustMap, of, switchMap} from "rxjs";
+
+import { __name@upperCamelCase__State} from "../model";
+import { __name@upperCamelCase__Service} from "../../core/api/__name__.service";
+import {API_STATUS,  __name@camelCase__sEntityActions} from "../actions";
+import {
+  oldValueToNewValueObjectGeneratorAdapter
+} from "../../shared/adapters/old-new-value-object-generator.adapter";
+
+export const updatePropertyEffects = createEffect(
+  (
+    actions$ = inject(Actions),
+     __name@camelCase__Store = inject(Store<{  __name@camelCase__State:  __name@upperCamelCase__State }>),
+     __name@camelCase__Service = inject( __name@upperCamelCase__Service)
+  ) => {
+    return actions$.pipe(
+      ofType( __name@camelCase__sEntityActions. __name@camelCase__PropertyUpdated),
+      exhaustMap((action) => {
+
+        const  __name@camelCase__InboundObject = oldValueToNewValueObjectGeneratorAdapter(action.propertyAfterUpdate)
+        return  __name@camelCase__Service.patchProperties(action. __name@camelCase__Id,  __name@camelCase__InboundObject).pipe(
+          switchMap(( __name@camelCase__) => {
+            return of( __name@camelCase__sEntityActions. __name@camelCase__DetailsUpdateCompleted( __name@camelCase__),
+               __name@camelCase__sEntityActions. __name@camelCase__DetailsUpdateLoadingStatus(API_STATUS.COMPLETED));
+          }),
+          catchError((error: { message: string }) =>
+            of( __name@camelCase__sEntityActions. __name@camelCase__DetailsUpdateLoadingStatus(API_STATUS.FAILED)))
+        );
+      })
+    );
+  },
+  {functional: true}
+);

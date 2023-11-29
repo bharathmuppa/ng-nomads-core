@@ -1,4 +1,5 @@
-# Node CLI project to integrate project creation and integration 
+console.log(`
+#  Node CLI project to integrate project creation and integration 
 
 
 ## Running Local
@@ -13,12 +14,13 @@
 ## Usage after publish (For consumers)
 
 ### With global installations
-- run `npm i -g ng-nomads`
-- then run `starter --projectName=demo-app` to create a scaffodling project
+- run `npm i @ng-nomads -g`
+- then run `starter --name=demo-app` to create a scaffodling project
 - then run `entity --name=someentity` in app/src folder, to create an entity with details,list, audit and state management.
 
 
 ### Without global installations
 
-- then run `npx ng-nomads starter --projectName=demo-app` to create a scaffodling project
-- then run `npx ng-nomads entity --name=someentity` in `app/src folder`, to create an entity with details,list, audit and state management.
+- then run `npx @ng-nomads-angular/ng-nomads starter --name=demo-app` to create a scaffodling project
+- then run `npx @ng-nomads-angular/ng-nomads entity --name=someentity` in app/src folder, to create an entity with details,list, audit and state management.
+`)

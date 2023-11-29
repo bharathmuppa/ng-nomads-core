@@ -1,0 +1,16 @@
+<mat-sidenav-container class="h-full !flex !flex-row" autosize>
+  <mat-sidenav [opened]="leftMenuState!.isOpened" [mode]="'side'"
+               [ngClass]="{'!w-[5rem] ': leftMenuState?.visibility === SIDENAV_VISIBILITY.COZY , '!w-[12rem] ': leftMenuState?.visibility === SIDENAV_VISIBILITY.COMPACT}">
+    <ng-content select="[left-menu]"></ng-content>
+  </mat-sidenav>
+  <!--This inline styles are required as Autosize property of mat-sidenav-container doesn't do what it has to do-->
+  <mat-sidenav-content
+    class="!overflow-x-hidden !overflow-y-auto background-grey  box-border !flex-1"
+  >
+    <ng-content select="[content]"></ng-content>
+  </mat-sidenav-content>
+  <mat-sidenav position="end" [opened]="rightMenuState!.isOpened" [mode]="'side'"
+               class="basis-[5rem]">
+    <ng-content select="[right-menu]"></ng-content>
+  </mat-sidenav>
+</mat-sidenav-container>

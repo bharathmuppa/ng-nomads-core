@@ -1,0 +1,12 @@
+<div class="flex flex-col h-full w-full">
+  <app-header [title]="'Angular project Starter'" class="h-[3.5rem] mat-elevation-z1"></app-header>
+  <!--App Body orchestrates what needs to be in body -->
+  <app-body class="flex-[calc(100vh-3.5rem)] h-[calc(100vh-3.5rem)]" [leftMenuState]="leftMenuState"
+            [rightMenuState]="rightMenuState">
+    <app-nav-menu left-menu [expand]="leftMenuState.visibility"></app-nav-menu>
+    <router-outlet content></router-outlet>
+    <app-event-menu right-menu
+                    [expand]="rightMenuState.visibility"></app-event-menu>
+  </app-body>
+
+</div>

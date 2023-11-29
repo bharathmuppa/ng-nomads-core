@@ -1,0 +1,36 @@
+import {Actions, createEffect, ofType} from "@ngrx/effects";
+import {inject} from "@angular/core";
+import {catchError, exhaustMap, of, switchMap, withLatestFrom} from "rxjs";
+import {select, Store} from "@ngrx/store";
+
+import {API_STATUS, __name@camelCase__sEntityActions} from "../actions";
+import {selected__name@upperCamelCase__Details} from "../selectors";
+import {__name@upperCamelCase__State} from "../model";
+import {__name@upperCamelCase__Service} from "../../core/api/__name__.service";
+import {CaseActionCompleted} from "../../models/case-actions.model";
+
+
+export const __name@camelCase__CaseActionPerformed = createEffect(
+  (
+    actions$ = inject(Actions),
+    __name@camelCase__Store = inject(Store<{ __name@camelCase__State: __name@upperCamelCase__State }>),
+    __name@camelCase__Service = inject( __name@upperCamelCase__Service)
+  ) => {
+    return actions$.pipe(
+      ofType(__name@camelCase__sEntityActions.__name@camelCase__CaseActionPerformed),
+      exhaustMap((action) => {
+
+        return __name@camelCase__Service.performCaseAction(action.__name@camelCase__Id, action.caseAction, action.payload).pipe(
+          switchMap((caseActionCompleted) => {
+            return of(__name@camelCase__sEntityActions.__name@camelCase__CaseActionCompleted(action.__name@camelCase__Id, caseActionCompleted),
+              __name@camelCase__sEntityActions.__name@camelCase__CaseActionCompletedStatus(action.__name@camelCase__Id,API_STATUS.COMPLETED),
+              __name@camelCase__sEntityActions.__name@camelCase__DetailsRequested(action.__name@camelCase__Id));
+          }),
+          catchError((error: { message: string }) =>
+            of(__name@camelCase__sEntityActions.__name@camelCase__CaseActionCompletedStatus(action.__name@camelCase__Id,API_STATUS.FAILED)))
+        );
+      })
+    );
+  },
+  {functional: true}
+);

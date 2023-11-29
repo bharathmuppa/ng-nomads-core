@@ -1,0 +1,7 @@
+# Import Angular YAML Template
+include:
+  - project: 'mirai/common/gitlab/ci-cd-templates'
+    file: '/Angular.yml'
+
+# Override base image used in pipeline template
+image: $ARTIFACTORY_REGISTRY_DOCKER/mirai-node-chrome:2.0.0

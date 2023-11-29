@@ -1,0 +1,11 @@
+::ng-deep {
+  .mat-snackbar-container .severity-three {
+    min-width: auto;
+  }
+}
+
+:host {
+  .snackbar__message {
+    color: #b1b3b5;
+  }
+}

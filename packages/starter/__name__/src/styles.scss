@@ -1,0 +1,66 @@
+/* You can add global styles to this file, and also import other style files */
+
+@use '@angular/material' as mat;
+@use '@ng-nomads-angular/theme' as *;
+
+@include mat.all-component-themes($aal--mat-light-theme);
+@include mat.all-component-typographies($aal--mat-typography);
+
+.primary-btn-theme {
+  @include mat.all-component-themes($aal--mat-btn-theme);
+  @include mat.all-component-typographies($aal--mat-typography);
+}
+
+
+@tailwind base;
+@tailwind utilities;
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* @body styles required for background image of page*/
+body {
+  background: $aal--mat-background;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+/* scrollbar for select menu */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
+  border-radius: 0px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border: 1px solid #ddd;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 0px;
+  -webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
+  background: #b3b3b3;
+}
+
+::-webkit-scrollbar-corner {
+  background: rgba(0, 0, 0, 0);
+}
+
+/**
+AAL Related styles
+TODO: Check this styles, remove if you find it unnecesary
+ */
+.aal-edit-section {
+  flex: 100% !important;
+}
+
+.clear-icon {
+  padding: 0 !important;
+}

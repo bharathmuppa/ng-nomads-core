@@ -1,0 +1,25 @@
+import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {MatIconModule} from "@angular/material/icon";
+import {AALObjectInformationModule} from "@ng-nomads-angular/material";
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatDividerModule} from "@angular/material/divider";
+
+import {
+  __name@upperCamelCase__AuditButtonComponent
+} from "../../__name__-audit/__name__-audit-button/__name__-audit-button.component";
+import {__name@upperCamelCase__SummaryComponent} from "../../__name__-summary/__name__-summary.component";
+import {__name@upperCamelCase__} from "../../models/__name__.model";
+
+@Component({
+  selector: 'app-__name__-details-header',
+  standalone: true,
+  imports: [CommonModule, MatIconModule, AALObjectInformationModule, MatToolbarModule, MatDividerModule, __name@upperCamelCase__AuditButtonComponent, __name@upperCamelCase__SummaryComponent],
+  templateUrl: './__name__-details-header.component.html',
+  styleUrls: ['./__name__-details-header.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class __name@upperCamelCase__DetailsHeaderComponent {
+  @Input()
+  __name@camelCase__: __name@upperCamelCase__ = {} as __name@upperCamelCase__;
+}

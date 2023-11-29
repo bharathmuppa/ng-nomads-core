@@ -1,0 +1,42 @@
+import {Routes} from "@angular/router";
+import {provideEffects} from "@ngrx/effects";
+
+import {__name@upperCamelCase__ListComponent} from "./__name__-list/__name__-list.component";
+import {__name@upperCamelCase__DetailComponent} from "./__name__-detail/__name__-detail.component";
+import {
+  __name@upperCamelCase__AuditDetailComponent
+} from "./__name__-audit/__name__-audit-detail/__name__-audit-detail.component";
+import {
+  __name@camelCase__CaseActionsRequestedEffect
+} from "./store/effects/__name__-caseactions-requested.effect";
+import {
+  __name@camelCase__CaseActionPerformed
+} from "./store/effects/__name__-caseaction-performed.effect";
+import {
+  __name@camelCase__DetailsRequestedEffects
+} from "./store/effects/__name__-details-requested.effect";
+import {updatePropertyEffects} from "./store/effects/update-property-requested.effect";
+
+export default [
+  {
+    path: '', component: __name@upperCamelCase__ListComponent, providers: [],
+  },
+  {
+    path: ':id',
+    component: __name@upperCamelCase__DetailComponent,
+    providers: [
+      provideEffects({
+        updatePropertyEffects,
+        __name@camelCase__DetailsRequestedEffects,
+        __name@camelCase__CaseActionsRequestedEffect,
+        __name@camelCase__CaseActionPerformed
+      })
+    ]
+  },
+  {path: ':id/audit', component: __name@upperCamelCase__AuditDetailComponent},
+  {
+    path: ':id',
+    redirectTo: ':id',
+    pathMatch: 'full'
+  }
+] as Routes;

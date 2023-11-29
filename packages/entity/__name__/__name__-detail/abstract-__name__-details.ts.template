@@ -1,0 +1,42 @@
+import {FormArray, FormGroup, UntypedFormBuilder} from "@angular/forms";
+import {Store} from "@ngrx/store";
+import {Modes} from "@ng-nomads-angular/common";
+import {inject} from "@angular/core";
+
+import {__name@upperCamelCase__State} from "../store/model";
+import {CasePropertiesService} from "../core/inter-app/case-properties.service";
+
+
+export type __name@upperCamelCase__DetailsDeps = [UntypedFormBuilder, CasePropertiesService, Store<{
+  __name@camelCase__State: __name@upperCamelCase__State
+}>,]
+
+export abstract class __name@upperCamelCase__DetailsCore {
+
+  protected formGroup!: FormGroup;
+  protected formGroupProperties: { [key: string]: Modes } = {};
+
+  protected constructor(protected formBuilder: UntypedFormBuilder, protected casePropertiesService: CasePropertiesService, protected __name@camelCase__Store: Store<{
+    __name@camelCase__State: __name@upperCamelCase__State
+  }>) {
+  }
+
+
+  patchArrayControls<T>(key: string, values: any[]) {
+    let formArray = this.formGroup.get(key) as FormArray
+    formArray.clear();
+    values.forEach(location => {
+      formArray.push(this.formBuilder.group(location))
+    });
+  }
+
+  static deps(): __name@upperCamelCase__DetailsDeps {
+    const formBuilder = inject(UntypedFormBuilder);
+    const __name@camelCase__Store = inject(Store<{
+      __name@camelCase__State: __name@upperCamelCase__State
+    }>,);
+    const casePropertiesService = inject(CasePropertiesService);
+
+    return [formBuilder, casePropertiesService, __name@camelCase__Store];
+  }
+}

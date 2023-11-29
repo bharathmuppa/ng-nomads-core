@@ -1,0 +1,72 @@
+import {createActionGroup, emptyProps} from "@ngrx/store";
+
+import { __name@upperCamelCase__,  __name@upperCamelCase__s} from "../models/__name__.model";
+import {PropertyAfterUpdate} from "../models/__name__-outbound.model";
+import {CaseActionPayload} from "./model";
+import {
+  CaseActionCompleted,
+  CaseActions,
+  CaseProperty
+} from "../models/case-actions.model";
+
+
+export enum API_STATUS {
+  'LOADING',
+  'COMPLETED',
+  'FAILED'
+}
+
+/**
+ * Action Group related to  __name@camelCase__s Entry
+ *
+ * see {@link https://ngrx.io/guide/store/action-groups} for more details
+ */
+export const  __name@camelCase__sEntityActions = createActionGroup({
+  source: ' __name@upperCamelCase__s Page',
+  events: {
+    // defining  __name@upperCamelCase__s Loaded Event with Props factory
+    ' __name@upperCamelCase__s List Requested': (filter: any) => ({filter}),
+    ' __name@upperCamelCase__s List Loaded': ( __name@camelCase__s:  __name@upperCamelCase__s) => ({ __name@camelCase__s}),
+    ' __name@upperCamelCase__s List Loading Status': ( __name@camelCase__sLoadingStatus: API_STATUS) => ({ __name@camelCase__sLoadingStatus}),
+
+    ' __name@upperCamelCase__ Creation Requested': emptyProps(),
+    ' __name@upperCamelCase__ Creation Completed': emptyProps(),
+    ' __name@upperCamelCase__ Creation Loading Status': ( __name@camelCase__CreationLoadingStatus: API_STATUS) => ({ __name@camelCase__CreationLoadingStatus}),
+
+
+    ' __name@upperCamelCase__ Details Requested': ( __name@camelCase__Id: string) => ({ __name@camelCase__Id}),
+    ' __name@upperCamelCase__ Details Request Completed': ( __name@camelCase__:  __name@upperCamelCase__) => ({ __name@camelCase__}),
+    ' __name@upperCamelCase__ Details Loading Status': ( __name@camelCase__DetailsLoadingStatus: API_STATUS) => ({ __name@camelCase__DetailsLoadingStatus}),
+
+    ' __name@upperCamelCase__ Case Properties Request Completed': (caseProperties: CaseProperty) => ({caseProperties}),
+    ' __name@upperCamelCase__ CaseActions Requested': ( __name@camelCase__Id: string) => ({ __name@camelCase__Id}),
+    ' __name@upperCamelCase__ CaseActions Request Completed': (caseActions: CaseActions) => ({caseActions}),
+    ' __name@upperCamelCase__ CaseActions Request Loading Status': ( __name@camelCase__CaseActionsRequestLoadingStatus: API_STATUS) => ({ __name@camelCase__CaseActionsRequestLoadingStatus}),
+    ' __name@upperCamelCase__ CaseAction Performed': ( __name@camelCase__Id: string, caseAction: string, payload?: CaseActionPayload) => ({
+       __name@camelCase__Id,
+      caseAction,
+      payload
+    }),
+    ' __name@upperCamelCase__ CaseAction Completed': ( __name@camelCase__Id: string, caseActionCompleted: CaseActionCompleted) => ({
+       __name@camelCase__Id,
+      caseActionCompleted
+    }),
+    ' __name@upperCamelCase__ CaseAction Completed Status': ( __name@camelCase__Id: string,  __name@camelCase__CaseActionCompletedStatus: API_STATUS) => ({
+       __name@camelCase__Id,
+       __name@camelCase__CaseActionCompletedStatus
+    }),
+
+    ' __name@upperCamelCase__ Details Update Requested': ( __name@camelCase__Id: string) => ({ __name@camelCase__Id}),
+    ' __name@upperCamelCase__ Details Update Completed': ( __name@camelCase__:  __name@upperCamelCase__) => ({ __name@camelCase__}),
+    ' __name@upperCamelCase__ Details Update Loading Status': ( __name@camelCase__DetailsUpdateLoadingStatus: API_STATUS) => ({ __name@camelCase__DetailsUpdateLoadingStatus}),
+
+    ' __name@upperCamelCase__ Property Updated': ( __name@camelCase__Id: string, propertyAfterUpdate: PropertyAfterUpdate) => ({
+       __name@camelCase__Id,
+      propertyAfterUpdate
+    }),
+
+
+  },
+});
+
+

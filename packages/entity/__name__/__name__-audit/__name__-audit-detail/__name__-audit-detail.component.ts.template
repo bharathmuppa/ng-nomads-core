@@ -1,0 +1,144 @@
+import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {MatTableModule} from "@angular/material/table";
+import {ActivatedRoute} from "@angular/router";
+import {Observable, of} from "rxjs";
+
+import {AALCommonModule} from "@ng-nomads-angular/common";
+import {MatIconModule} from "@angular/material/icon";
+import {AgGridModule} from "ag-grid-angular";
+
+import {
+  ColDef, ColumnApi, GridApi,
+  GridReadyEvent,
+  IsRowMaster
+} from "ag-grid-community";
+
+import { __name@upperCamelCase__Service} from "../../core/api/__name__.service";
+import {ChangeLog, ChangeLogs} from "../../models/change-log";
+import {
+   __name@upperCamelCase__AuditDetailTableColumnNamePipe
+} from "../adapter/__name__-audit-detail-table-column-name.adapter";
+import { __name@upperCamelCase__StatusLabelPipe} from "../../shared/adapters/__name__-status-label.adapter";
+import {TitleCaseTextPipe} from "../../../shared/pipes/titlecase-text.pipe";
+
+
+@Component({
+  selector: 'app-__name__-audit-detail',
+  standalone: true,
+  imports: [CommonModule, MatTableModule,  __name@upperCamelCase__AuditDetailTableColumnNamePipe,  __name@upperCamelCase__StatusLabelPipe, AALCommonModule, MatIconModule, TitleCaseTextPipe, AgGridModule],
+  templateUrl: './__name__-audit-detail.component.html',
+  styleUrls: ['./__name__-audit-detail.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class  __name@upperCamelCase__AuditDetailComponent implements OnInit {
+
+  $changeLog!: Observable<ChangeLog[]>;
+  @Input({required: true})
+   __name@camelCase__Id!: string;
+  rowData$!: Observable<ChangeLogs>;
+
+  allColumnDefs: ColDef[] = [
+    {
+      field: 'property',
+      headerName: 'Property',
+      colId: 'property',
+      sortable: true,
+      filter: true,
+      cellRenderer: 'agGroupCellRenderer',
+      valueFormatter: this.formatPropertyColumn.bind(this)
+    },
+    {
+      field: 'old_value',
+      headerName: 'Old Value',
+      colId: 'old_value',
+      valueFormatter: this.formatValueColumn.bind(this)
+    },
+    {
+      field: 'new_value',
+      headerName: 'New Value',
+      colId: 'new_value',
+      valueFormatter: this.formatValueColumn.bind(this)
+    },
+    {
+      field: 'user_id',
+      headerName: 'Modified By',
+      colId: 'user_id',
+      sortable: true,
+      filter: true
+    },
+    {field: 'modified_on', headerName: 'Modified On', colId: 'modified_on'}
+  ]
+
+  columnDefs: ColDef[] = this.allColumnDefs;
+  public defaultColDef: ColDef = {
+    flex: 1,
+  };
+  public detailCellRendererParams: any = {
+    detailGridOptions: {
+      // level 2 grid options
+      columnDefs: [
+        {
+          field: 'id', headerName: 'Location', colId: 'id', sortable: true, filter: true,
+          cellRenderer: 'agGroupCellRenderer'
+        }],
+      detailRowAutoHeight: true,
+      defaultColDef: {
+        flex: 1,
+      },
+      masterDetail: true,
+      detailRowHeight: 240,
+      detailCellRendererParams: {
+        // level 3 grid options
+        detailGridOptions: {
+          columnDefs: this.allColumnDefs,
+          defaultColDef: {
+            flex: 1,
+          },
+        },
+        getDetailRowData: (params: any) => {
+          params.successCallback(params?.data?.change_logs);
+        },
+      }
+    },
+    getDetailRowData: (params: any) => {
+      params.successCallback(params?.data?.location_change_logs);
+    }
+  };
+  private gridApi!: GridApi<ChangeLogs>;
+  private gridColumnApi!: ColumnApi;
+
+  constructor(private  __name@camelCase__Service:  __name@upperCamelCase__Service, private activatedRoute: ActivatedRoute,
+   private titleCaseTextPipe: TitleCaseTextPipe, private __name@camelCase__StatusLabelPipe: __name@upperCamelCase__StatusLabelPipe
+  ) {
+  }
+
+  public isRowMaster: IsRowMaster = (dataItem: any) => {
+    return (dataItem.property === 'locations');
+  }
+
+  onGridReady(params: GridReadyEvent<ChangeLogs>) {
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+  }
+
+  ngOnInit() {
+    this.rowData$ = this. __name@camelCase__Service.getChangeLog(this.activatedRoute.snapshot.paramMap.get('id') ?? 'undefined');
+  }
+
+  formatPropertyColumn(params: any) {
+   return TitleCaseTextPipe.format(params.value);
+   }
+
+
+  formatValueColumn(params: any) {
+
+   if (params.data.property === 'status') {
+    return  __name@upperCamelCase__StatusLabelPipe.transform(params.value);
+   }
+   return params.value;
+  }
+
+}
+
+

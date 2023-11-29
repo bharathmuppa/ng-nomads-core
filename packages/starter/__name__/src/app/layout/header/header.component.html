@@ -1,0 +1,11 @@
+<mat-toolbar color="primary" class="flex flex-row h-full">
+  <button mat-icon-button aria-label="Click to open Navigation" (click)="toggleMenu()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>{{title}}</span>
+  <span class="flex-auto"></span>
+  <button mat-icon-button aria-label="Favorite Icon">
+    <mat-icon>favorite</mat-icon>
+  </button>
+  <app-user-profile [userProfile]="(userProfile$|async)!"></app-user-profile>
+</mat-toolbar>

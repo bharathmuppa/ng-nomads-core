@@ -1,0 +1,5 @@
+<mat-toolbar class="flex flex-row justify-end gap-2 !color-[#FBFBFB]">
+  <app-__name__-case-action-button [ __name@camelCase__Id]="__name@camelCase__Id"
+  *ngFor="let caseAction of caseActions; index as i;" [caseAction]="caseAction"></app-__name__-case-action-button>
+</mat-toolbar>
+

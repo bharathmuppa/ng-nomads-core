@@ -1,0 +1,85 @@
+import {Injectable} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {map, Observable} from "rxjs";
+
+import {environment} from "../../../../environments/environment";
+
+import {__name@upperCamelCase__, __name@upperCamelCase__sDto} from "../../models/__name__.model";
+import {StateCountOverview} from "../../models/state-count-overview";
+import {ChangeLogs} from "../../models/change-log";
+import {__name@upperCamelCase__Outbound} from "../../models/__name__-outbound.model";
+
+import {
+  CaseActionCompleted,
+  CaseActions,
+  CaseProperties
+} from "../../models/case-actions.model";
+
+@Injectable({
+  providedIn: 'root'
+})
+export class __name@upperCamelCase__Service {
+
+  constructor(private readonly http: HttpClient) {
+  }
+
+  public get__name@upperCamelCase__s(page?: number, size?: number): Observable<__name@upperCamelCase__sDto> {
+    let url = `${environment.__name@camelCase__ServiceURL}`;
+    if (page !== undefined && page !== null && size) {
+      url = `${url}?page=${page}&size=${size}`;
+    }
+    return this.http.get<__name@upperCamelCase__sDto>(url);
+  }
+
+  public get__name@upperCamelCase__(__name__Id: string): Observable<__name@upperCamelCase__> {
+    let url = `${environment.__name@camelCase__ServiceURL}/${__name@camelCase__Id}`;
+
+    return this.http.get<__name@upperCamelCase__>(url);
+  }
+
+  public getCaseProperties(__name@camelCase__Id: string): Observable<CaseProperties> {
+    let url = `${environment.__name@camelCase__ServiceURL}/${__name@camelCase__Id}/case-properties`;
+
+    return this.http.get<CaseProperties>(url);
+  }
+
+  public getStateCountOverview(): Observable<StateCountOverview> {
+    const url = `${environment.__name@camelCase__ServiceURL}?view=state-overview`;
+    return this.http.get<StateCountOverview>(url);
+  }
+
+  public getChangeLogOfStatus(__name@camelCase__Id: string): Observable<ChangeLogs> {
+    const url = `${environment.__name@camelCase__ServiceURL}/${__name@camelCase__Id}/change-log?view=status`;
+    return this.http.get<ChangeLogs>(url);
+  }
+
+  public getChangeLog(__name@camelCase__Id: string): Observable<ChangeLogs> {
+    const url = `${environment.__name@camelCase__ServiceURL}/${__name@camelCase__Id}/change-log`;
+    return this.http.get<ChangeLogs>(url);
+  }
+
+  create__name@upperCamelCase__(__name@camelCase__: __name@upperCamelCase__): Observable<__name@upperCamelCase__> {
+    const url = `${environment.__name@camelCase__ServiceURL}`;
+    return this.http.post<__name@upperCamelCase__>(url, __name@camelCase__);
+  }
+
+
+  patchProperties(id: string, __name@camelCase__OutboundObject: __name@upperCamelCase__Outbound): Observable<__name@upperCamelCase__> {
+    const url = `${environment.__name@camelCase__ServiceURL}/${id}`;
+    return this.http.patch<__name@upperCamelCase__>(url, __name@camelCase__OutboundObject);
+  }
+
+
+
+  getCaseActions(id: string): Observable<CaseActions> {
+    const url = `${environment.__name@camelCase__ServiceURL}/${id}/case-actions`;
+    return this.http.get<CaseActions>(url);
+  }
+
+  performCaseAction(id: string, caseAction: string, payload?: any): Observable<CaseActionCompleted> {
+    const url = `${environment.__name@camelCase__ServiceURL}/${id}?case_action=${caseAction}`;
+    return this.http.patch<CaseActionCompleted>(url, payload);
+  }
+
+
+}

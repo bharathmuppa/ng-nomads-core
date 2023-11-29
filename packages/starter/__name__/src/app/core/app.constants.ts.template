@@ -1,0 +1,4 @@
+export const APP_CONSTANTS= {
+  'projectName': '__name__',
+  'safeSvgURLPattern': '<your project safe pattern>'
+}

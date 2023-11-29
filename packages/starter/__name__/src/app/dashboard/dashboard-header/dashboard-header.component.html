@@ -1,0 +1,38 @@
+<mat-toolbar color="primary"
+             class="flex flex-row justify-between w-full !h-auto aal--padding-right-left-r2 aal--padding-top-bottom-r1">
+  <div class="flex flex-row justify-start items-center">
+    <img [src]="userProfile!.user_id | userImage" alt="User Profile"
+         class="h-[64px] w-[64px] rounded-full object-cover aal--margin-right-r1"
+    />
+    <div class="flex flex-col">
+      <span class="text-2xl  aal--margin-bottom-r0">Welcome back,</span>
+      <span
+        class="text-4xl aal--margin-bottom-r0">{{userProfile!.full_name}}</span>
+    </div>
+  </div>
+  <div class="flex flex-col gap-4">
+    <span class="mat-subheading-2">Stats</span>
+    <div class="flex flex-row gap-12">
+      <span class="flex flex-col">
+        <span class="mat-caption">Stat 1</span>
+        <span class="mat-display-4 aal--margin-bottom-r0 color-red link stat-1"
+        >10</span>
+      </span>
+      <Span class="flex flex-col gap-[0.2rem]">
+        <span class="mat-caption">Stat 2</span>
+        <span class="mat-title color-orange link stat-2"
+              [matTooltip]="'Stat2'">30</span>
+      </Span>
+      <Span class="flex flex-col gap-[0.2rem]">
+        <span class="mat-caption">Stat 3</span>
+        <span class="mat-title color-green link stat-3"
+        >40</span>
+      </Span>
+      <Span class="flex flex-col gap-[0.2rem]">
+        <span class="mat-caption">Stat 4</span>
+        <span class="mat-title color-accent link stat-4"
+        >20</span>
+      </Span>
+    </div>
+  </div>
+</mat-toolbar>

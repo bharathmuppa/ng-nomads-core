@@ -1,0 +1,39 @@
+@use "@ng-nomads-angular/theme" as *;
+
+.warning-icon{
+  height: 1.5rem;
+  width: 1.5rem;
+  opacity: 0.7;
+}
+.dialog-content {
+  display: flex;
+  padding: 3rem 7.5rem;
+  flex-direction: column;
+  gap: 1rem;
+  align-self: stretch;
+  align-items: baseline;
+
+  .dialog-content-line {
+    .warning-icon-light{
+      opacity: 0.54;
+    }
+    .sub-title {
+      font-family: Roboto, sans-serif;
+      font-size: 1.25rem;
+      font-weight: 500;
+      line-height: 2rem;
+      letter-spacing: 0.0025em;
+      text-align: left;
+    }
+
+    .message {
+      font-family: Roboto, sans-serif;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5rem;
+      letter-spacing: 0.005em;
+      text-align: left;
+      height: auto;
+    }
+  }
+}

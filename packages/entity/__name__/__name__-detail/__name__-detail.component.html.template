@@ -1,0 +1,13 @@
+<div class="flex flex-col w-[100%] h-[100%]">
+  <app-__name__-details-header [__name@camelCase__]="__name@camelCase__"
+                            class="flex-[0_0_3.5rem]"></app-__name__-details-header>
+
+  <mat-accordion multi="true"
+                 class="flex flex-row  flex-auto flex-wrap p-4  justify-between items-stretch gap-4 overflow-y-auto overflow-x-hidden">
+ 
+  </mat-accordion>
+
+  <app-__name__-details-footer [caseActions]="$any(caseActions$ | async)"
+                            [__name@camelCase__Id]="__name@camelCase__.id"
+                            class="flex-[0_0_3.5rem]"></app-__name__-details-footer>
+</div>

@@ -1,0 +1,21 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import {  __name@upperCamelCase__CaseActionButtonComponent } from './__name__-case-action-button.component';
+
+describe(' __name@upperCamelCase__CaseActionButtonComponent', () => {
+  let component:  __name@upperCamelCase__CaseActionButtonComponent;
+  let fixture: ComponentFixture< __name@upperCamelCase__CaseActionButtonComponent>;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [ __name@upperCamelCase__CaseActionButtonComponent]
+    });
+    fixture = TestBed.createComponent( __name@upperCamelCase__CaseActionButtonComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

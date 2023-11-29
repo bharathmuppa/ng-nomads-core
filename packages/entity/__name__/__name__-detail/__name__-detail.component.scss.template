@@ -1,0 +1,7 @@
+.mat-expansion-panel-spacing {
+  margin: 0 !important;
+}
+
+.mdc-list-item__content{
+  width:100%;
+}

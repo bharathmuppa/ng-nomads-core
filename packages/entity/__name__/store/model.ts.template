@@ -1,0 +1,22 @@
+import { __name@upperCamelCase__} from "../models/__name__.model";
+import {API_STATUS} from "./actions";
+import {CaseActions, CaseProperty} from "../models/case-actions.model";
+
+export interface  __name@upperCamelCase__State {
+   __name@camelCase__s: Map<string,  __name@upperCamelCase__>;
+  selected__name@upperCamelCase__?: string,
+  selected__name@upperCamelCase__Details?:  __name@upperCamelCase__,
+  selected__name@upperCamelCase__CaseProperties? : CaseProperty,
+   __name@camelCase__sLoadingStatus?: API_STATUS,
+   __name@camelCase__sLoadingFailed?: boolean,
+   __name@camelCase__DetailsLoadingStatus?: API_STATUS,
+  create__name@upperCamelCase__Requested?: boolean
+  create__name@upperCamelCase__RequestedStatus?: API_STATUS
+  selected__name@upperCamelCase__CaseActions?: CaseActions,
+  selected__name@upperCamelCase__CaseActionsRequestLoadingStatus?: API_STATUS
+}
+
+export interface CaseActionPayload {
+
+}
+

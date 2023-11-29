@@ -1,0 +1,69 @@
+import {PropertyAfterUpdate,  __name@upperCamelCase__Outbound} from "../../models/__name__-outbound.model";
+
+export function oldValueToNewValueObjectGeneratorAdapter(propertyAfterUpdate: PropertyAfterUpdate):  __name@upperCamelCase__Outbound {
+  // do normalize if required
+
+  let oldValue;
+  if (typeof propertyAfterUpdate?.oldValue === 'object') {
+    oldValue = propertyAfterUpdate?.oldValue?.length > 0 ? propertyAfterUpdate?.oldValue : null
+  } else {
+    oldValue = propertyAfterUpdate?.oldValue;
+  }
+
+  return {
+    old_ins: {
+      [propertyAfterUpdate.ID]: Boolean(oldValue) ? oldValue : null
+    },
+    new_ins: {
+      [propertyAfterUpdate.ID]: propertyAfterUpdate.value
+    }
+  }
+}
+
+export function oldArrayValueToNewArrayValueObjectGeneratorAdapter(key: string, oldValues: any, newValue: any):  __name@upperCamelCase__Outbound {
+  // do normalize if required
+  const matched = 0;
+  const oldValuesThatDidntMatch = oldValues?.filter((oldValue: any) => {
+    return JSON.stringify(oldValue) !== JSON.stringify(newValue)
+  });
+
+  return {
+    old_ins: {[key]: oldValues ?? null},
+    new_ins: {
+      [key]: oldValues && oldValues.length > 0 ? [...oldValuesThatDidntMatch, newValue] : [newValue]
+    }
+  }
+}
+
+export function oldArrayValueToNewArrayValueUpdateObjectGeneratorAdapter(key: string, oldValues: any, newValue: any, index: number):  __name@upperCamelCase__Outbound {
+  // do normalize if required
+  const newValues = [...oldValues];
+  newValues[index] = newValue;
+
+  return {
+    old_ins: {[key]: oldValues ?? null},
+    new_ins: {
+      [key]: newValues
+    }
+  }
+}
+
+
+export function oldArrayValueToNewArrayValueDeleteObjectGeneratorAdapter(key: string, oldValues: any, index: number):  __name@upperCamelCase__Outbound {
+  // do normalize if required
+  const newValues = [...oldValues]
+  newValues.splice(index, 1);
+
+  return {
+    old_ins: {[key]: oldValues ?? null},
+    new_ins: {
+      [key]: newValues ?? null
+    }
+  }
+}
+
+
+
+
+
+

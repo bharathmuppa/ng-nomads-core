@@ -1,0 +1,20 @@
+<!--Start: Template to show Severity case: 1(Dialog Box)-->
+<div mat-dialog-title fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="1rem">
+  <mat-icon>warning</mat-icon>
+  <span>Error</span>
+  <span fxFlex></span>
+  <mat-icon (click)="closeDialog()" class="icon--pointer">close</mat-icon>
+</div>
+<div fxLayout="row" fxLayoutAlign="start start" mat-dialog-content>
+  <div class="notification-content" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="0.5rem">
+    <div fxLayout="row" fxLayoutAlign="start start" *ngFor="let error of uniqueErrors;let i=index" fxLayoutGap="0.5rem">
+      <span class="label" *ngIf="uniqueErrors && uniqueErrors.length>1">{{i + 1}}.</span>
+      <span [innerHTML]="error?.message" class="error-text"></span>
+    </div>
+  </div>
+
+</div>
+<div mat-dialog-actions fxLayout="row-reverse" class="color-grey">
+  <button mat-flat-button (click)="closeDialog()">Dismiss</button>
+</div>
+<!--End: Template to show Severity case: 1 (Dialog Box)-->

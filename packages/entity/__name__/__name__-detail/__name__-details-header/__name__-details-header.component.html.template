@@ -1,0 +1,21 @@
+<mat-toolbar class="flex flex-row   !h-[5rem] !color-[#FBFBFB]">
+  <div class="flex flex-row justify-start items-center w-[50%]">
+    <ng-content *ngTemplateOutlet="subTaskBarLeftSection"></ng-content>
+  </div>
+  <div class="flex flex-row justify-end items-center w-[50%]">
+    <ng-content *ngTemplateOutlet="subTaskBarRightSection"></ng-content>
+  </div>
+</mat-toolbar>
+
+<!-- Subtask Bar left section -->
+<ng-template #subTaskBarLeftSection>
+  <app-__name__-summary [__name@camelCase__]="__name@camelCase__"></app-__name__-summary>
+</ng-template>
+
+<ng-template #subTaskBarRightSection>
+  <div class="flex flx-row" title-bar-actions>
+    <div class="w-[4rem]" *ngIf=" __name@camelCase__ &&  __name@camelCase__.id">
+      <app-__name__-audit-button [__name@camelCase__Id]="__name@camelCase__.id"></app-__name__-audit-button>
+    </div>
+  </div>
+</ng-template>

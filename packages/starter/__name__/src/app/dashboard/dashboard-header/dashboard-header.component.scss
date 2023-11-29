@@ -1,0 +1,29 @@
+@use '@ng-nomads-angular/theme' as *;
+
+.link {
+  width: max-content;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &.stat-1:hover {
+    border-bottom: 2px solid $aal--mat-alert;
+  }
+
+  &.stat-2:hover {
+    border-bottom: 2px solid $aal--mat-caution;
+  }
+
+  &.stat-2 {
+    border-bottom: 2px solid $aal--mat-primary;
+  }
+
+  &.stat-4:hover {
+    border-bottom: 2px solid $aal--mat-secondary;
+  }
+
+  &.stat-3 :hover {
+    border-bottom: 2px solid $aal--mat-good;
+  }
+}

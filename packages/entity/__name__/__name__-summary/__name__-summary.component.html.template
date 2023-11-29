@@ -1,0 +1,12 @@
+<div class="flex flex-row gap-4 !color-black justify-start items-center">
+  <div class="flex flex-col gap-2">
+    <div class="flex flex-row gap-2 justify-start items-center">
+      <span class="color-black font-bold"> {{__name@camelCase__.id}}</span>
+      <span><b>&middot;</b></span>
+      <span class="label ">{{__name@camelCase__.status  }}</span>
+    </div>
+    <span class="color-black leading-[20px] font-normal truncate">
+                {{__name@camelCase__.title}}
+              </span>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<div fxLayout="row" fxLayoutAlign="space-between center"
+     mat-dialog-title>
+  <span fxLayoutAlign="start center" fxLayoutGap="1rem" fxFlex>
+    <mat-icon class="warning-icon">warning</mat-icon>
+    <span *ngIf="errorData?.title">{{errorData?.title}}</span>
+    <span *ngIf="!errorData?.title">Parallel Update Warning</span>
+  </span>
+</div>
+<mat-dialog-content class="dialog-content">
+    <div *ngIf="errorData?.subTitle && errorData?.subTitle.length > 0"
+         class="dialog-content-line" fxLayout="row" fxLayoutAlign="start center">
+        <mat-icon class="aal--padding-right-r1 icon--medium warning-icon-light">warning</mat-icon>
+        <span class="sub-title">{{errorData.subTitle}}</span>
+    </div>
+    <div class="dialog-content-line mat-body-2" fxLayout="row" fxLayoutAlign="start center">
+        <span *ngIf="!errorData?.message"
+              [innerHTML]="errorData?.errorData?.message" class=" message error-text"></span>
+        <span *ngIf="errorData?.message"
+              [innerHTML]="errorData?.message" class="message error-text"></span>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions *ngIf="errorData?.showConfirmAndContinue" fxLayout="row"
+                    fxLayoutAlign="space-between center">
+    <iam-button-outlined (buttonClicked)="closeDialog()"
+                         [text]="'Cancel,Reload'"></iam-button-outlined>
+    <iam-button-contained (buttonClicked)="refreshData()"
+                          [text]="'Confirm,Continue'"></iam-button-contained>
+</mat-dialog-actions>
+<mat-dialog-actions *ngIf="errorData?.showReload" fxLayout="row" fxLayoutAlign="end end">
+    <iam-button-contained (buttonClicked)="refreshData()"
+                          [text]="'Reload'"></iam-button-contained>
+</mat-dialog-actions>

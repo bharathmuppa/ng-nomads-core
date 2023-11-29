@@ -1,0 +1,34 @@
+import {Actions, createEffect, ofType} from "@ngrx/effects";
+import {inject} from "@angular/core";
+import {catchError, exhaustMap, of, switchMap, withLatestFrom} from "rxjs";
+import {select, Store} from "@ngrx/store";
+
+import {API_STATUS, __name@camelCase__sEntityActions} from "../actions";
+import {selected__name@upperCamelCase__Details} from "../selectors";
+import {__name@upperCamelCase__State} from "../model";
+import {__name@upperCamelCase__Service} from "../../core/api/__name__.service";
+
+
+export const __name@camelCase__CaseActionsRequestedEffect = createEffect(
+  (
+    actions$ = inject(Actions),
+    __name@camelCase__Store = inject(Store<{ __name@camelCase__State: __name@upperCamelCase__State }>),
+    __name@camelCase__Service = inject(__name@upperCamelCase__Service)
+  ) => {
+    return actions$.pipe(
+      ofType(__name@camelCase__sEntityActions.__name@camelCase__CaseActionsRequested),
+      exhaustMap((action) => {
+
+        return __name@camelCase__Service.getCaseActions(action.__name@camelCase__Id).pipe(
+          switchMap((caseActions) => {
+            return of(__name@camelCase__sEntityActions.__name@camelCase__CaseActionsRequestCompleted(caseActions),
+              __name@camelCase__sEntityActions.__name@camelCase__CaseActionsRequestLoadingStatus(API_STATUS.COMPLETED));
+          }),
+          catchError((error: { message: string }) =>
+            of(__name@camelCase__sEntityActions.__name@camelCase__CaseActionsRequestLoadingStatus(API_STATUS.FAILED)))
+        );
+      })
+    );
+  },
+  {functional: true}
+);

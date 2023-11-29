@@ -1,0 +1,21 @@
+import {Injectable} from '@angular/core';
+import {MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {Create__name@upperCamelCase__Component} from "./ui/dialogs/create-__name__/create-__name__.component";
+
+@Injectable({
+  providedIn: 'root'
+})
+export class __name@upperCamelCase__sGatewayService {
+
+  constructor(public dialog: MatDialog) {
+  }
+
+  openCreate__name@upperCamelCase__Dialog(): MatDialogRef<Create__name@upperCamelCase__Component> {
+    return this.dialog.open(Create__name@upperCamelCase__Component, {
+      width: '40vw',
+      enterAnimationDuration: '22ms',
+      exitAnimationDuration: '22ms',
+    });
+  }
+
+}

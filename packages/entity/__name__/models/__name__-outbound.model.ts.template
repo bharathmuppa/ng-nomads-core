@@ -1,0 +1,11 @@
+export interface __name@upperCamelCase__Outbound {
+  old_ins: { [key: string]: any },
+  new_ins: { [key: string]: any }
+}
+
+
+export interface PropertyAfterUpdate {
+  ID: string,
+  value: any,
+  oldValue: any
+}

@@ -1,0 +1,11 @@
+export interface  __name@upperCamelCase__StatusChangeLogCard {
+
+  mainDescription: string;
+  subDescription: string;
+  status: string;
+  userId: string;
+  modifiedOn: Date;
+
+}
+
+export type  __name@upperCamelCase__StatusChangeLogCards =  __name@upperCamelCase__StatusChangeLogCard[]

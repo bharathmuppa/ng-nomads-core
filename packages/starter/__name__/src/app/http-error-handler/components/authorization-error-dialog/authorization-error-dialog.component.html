@@ -1,0 +1,40 @@
+<div class="aal--padding-right-r-5" fxLayout="row" fxLayoutAlign="space-between center"
+     mat-dialog-title>
+  <span fxLayoutAlign="start center" fxLayoutGap="0.5rem" fxFlex>
+    <mat-icon>{{(data.errorType === "authorization") ? 'error' : 'warning'}}</mat-icon>
+    <span>{{(data.errorType === "authorization") ? 'Error' : 'Unsupported Browser'}}</span>
+  </span>
+</div>
+<mat-dialog-content class="align-item">
+    <div *ngIf="data.errorType === 'authorization'">
+        <span style="font-size:20px !important;"><b
+                style="font-size: 20px;">Access Denied</b></span>
+        <br><br>
+        <b style="font-size:16px;">Existing User</b>
+        <br>
+        <p>Authentication failed. Your token has expired or is no longer active. To
+            re-activate token, please follow the steps described in <a
+                    href="https://ng-nomads.sharepoint.com/:b:/s/myChangeKeyUsers/EWcwV6j6hUhDu13koLmrumwBYC82zO_xeX-ikRFe68zMcQ?e=PUWaDJ">this
+                file</a></p>
+        <br><br>
+        <b style="font-size:16px;">New User</b>
+        <br>
+        You are not authorized. If you're a new user, please request access via <a
+            href="https://iam.ng-nomads.com/aveksa/main?ReqType=GetPage&PageID=HomeTab_DashboardTab_Home_DashboardDisplayPageData&BreadcrumbLevel=0">IAM
+        Portal</a>. For more information about user roles in myImpact, view <a
+            href="https://ng-nomads.sharepoint.com/teams/cm-processes/myImpact/SitePages/How%20can%20I%20access%20myImpact.aspx">myImpact
+        Sharepoint.</a>
+    </div>
+    <div *ngIf="data.errorType === 'browser'"
+         class="aal--padding-right-left-r3 aal--padding-bottom-r3 aal--padding-top-r2">
+        <div class="aal--padding-bottom-r1" fxLayout="row"
+             fxLayoutAlign="start center">
+            <mat-icon class="aal--padding-right-r-5 icon--medium">warning</mat-icon>
+            <span class="mat-headline-6 aal--padding-top-r-5">myImpact DIA is not optimized for this browser</span>
+        </div>
+        <div>
+            <span class="mat-body-2">myImpact DIA is not optimized for this browser and will not work as expected. Please use
+                <strong>Microsoft Edge</strong> or <strong>Google Chrome</strong></span>
+        </div>
+    </div>
+</mat-dialog-content>

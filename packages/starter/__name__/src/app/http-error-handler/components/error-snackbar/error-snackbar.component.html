@@ -1,0 +1,9 @@
+<div fxLayout="column" fxLayoutAlign="space-between start" class="snackbar-content">
+  <div class="notification-content" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="0.5rem">
+    <div fxLayout="row" fxLayoutAlign="start start" *ngFor="let error of uniqueErrors;let i=index" fxLayoutGap="0.5rem">
+      <span *ngIf="uniqueErrors.length>1">{{i + 1}}. </span>
+      <span [innerHTML]="error?.message" class="error-text"></span>
+    </div>
+  </div>
+  <span fxFlexAlign="end" *ngIf="!snackData?.duration" class="icon--pointer color-accent" (click)="closeSnackBar()"> Close </span>
+</div>

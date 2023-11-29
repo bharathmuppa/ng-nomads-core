@@ -1,0 +1,65 @@
+import {ChangeDetectionStrategy, Component, Inject} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {MAT_DIALOG_DATA, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
+import {MatButtonModule} from "@angular/material/button";
+import {
+  AALAutoCompleteMultipleModule,
+  AALAutoCompleteSingleModule,
+  AALInputTextAreaModule,
+  AALInputTextModule,
+  AALSelectSingleModule
+} from "@ng-nomads-angular/material";
+import {MatIconModule} from "@angular/material/icon";
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {FormBuilder, FormGroup} from "@angular/forms";
+import {Modes} from "@ng-nomads-angular/common";
+
+import {__name@upperCamelCase__} from "../../../models/__name__.model";
+import {__name@upperCamelCase__Service} from "../../../core/api/__name__.service";
+
+@Component({
+  selector: 'app-create-__name__',
+  standalone: true,
+  imports: [CommonModule, MatDialogModule, MatButtonModule, AALAutoCompleteMultipleModule, AALInputTextModule, AALSelectSingleModule, MatIconModule, MatToolbarModule, AALInputTextAreaModule, AALAutoCompleteSingleModule],
+  templateUrl: './create-__name__.component.html',
+  styleUrls: ['./create-__name__.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class Create__name@upperCamelCase__Component {
+
+  __name@camelCase__FormGroup: FormGroup;
+
+  protected readonly Modes = Modes;
+  
+  constructor(public dialogRef: MatDialogRef<Create__name@upperCamelCase__Component>,
+              @Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder, private __name@camelCase__Service: __name@upperCamelCase__Service) {
+    this.__name@camelCase__FormGroup = this.fb.group({
+      title: '',
+    } as Partial<__name@upperCamelCase__>);
+
+  }
+
+  create__name@upperCamelCase__() {
+    if (!this.__name@camelCase__FormGroup.invalid) {
+
+      this.__name@camelCase__Service.create__name@upperCamelCase__(this.__name@camelCase__FormGroup.value).subscribe((__name@camelCase__: __name@upperCamelCase__) => {
+        this.dialogRef.close(__name@camelCase__);
+      });
+
+    }
+  }
+
+  closeDialog(dialogOptions: any) {
+    this.dialogRef.close(dialogOptions);
+  }
+
+
+
+  onAcceptChanges($event: any) {
+  }
+
+  onRejectChanges($event: any) {
+
+  }
+
+}

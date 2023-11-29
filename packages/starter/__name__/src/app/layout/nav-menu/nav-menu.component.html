@@ -1,0 +1,30 @@
+<!--This Template consists all navigation items -->
+<div class="flex flex-col p-3.5 aal-nav-menu">
+  <mat-nav-list class="!flex !flex-col ">
+    <mat-list-item
+      class="flex flex-row justify-start items-center aal-nav-menu__list-item list-item-with-icon-and-text"
+      [ngClass]="expand=== SIDENAV_VISIBILITY.COMPACT?'button-with-icon-and-text--compact':'button-with-icon-and-text--cozy'"
+      id="main_menu_create" (click)="addAEntity()">
+      <mat-icon matListItemIcon [matTooltip]="'Create'" color="primary" class="!ml-3.5">
+        add
+      </mat-icon>
+      <span matListItemTitle class="font-bold button-with-icon-and-text__text"
+            color="accent">Create</span>
+    </mat-list-item>
+    <mat-divider class="!my-2"></mat-divider>
+    <a mat-list-item routerLink="/dashboard" [routerLinkActive]="['is-active']"
+       class="flex flex-row justify-start items-center aal-nav-menu__list-item"
+       id="main_menu_home">
+      <mat-icon matListItemIcon [matTooltip]="'Home'" class="!ml-3">home</mat-icon>
+      <span matListItemTitle>Home</span>
+    </a>
+    <a mat-list-item routerLink="/entities" [routerLinkActive]="['is-active']"
+       class="flex flex-row justify-start items-center aal-nav-menu__list-item"
+       id="main_menu_entity">
+      <mat-icon matListItemIcon [matTooltip]="'Home'" class="!ml-3">entity_outlined
+      </mat-icon>
+      <span matListItemTitle>Entities</span>
+    </a>
+  </mat-nav-list>
+</div>
+

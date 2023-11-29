@@ -1,0 +1,36 @@
+<span >
+  <aal-button-overlay-card        [headerIcon]="'history'"
+                                  [headerTitle]="'Status Changes'"
+                                  [buttonType]="'icon'"
+                                  [buttonIcon]="'history'"
+                                  [isIconBorder] = "true"
+                                  [buttonTooltip]="'History'"
+                                  [largeAmountsLength]="8"
+                                  [largeAmountsTemplateRef]="largeAmountsRef"
+                                  [listItemDetails]="$any($listDetails | async)"
+                                  [overlayMenuYPosition]="'above'"
+                                  [overlayMenuXPosition]="'before'"
+                                  [buttonLabel]="'Overlay'"
+                                  [itemTemplateRef]="itemRef"
+                                  [showFooterBar]="true"
+                                  [footerButtonText]="'Show All'"
+                                  (submitClick)="showAll()"
+                                  (click)="onClick($event)"
+  ></aal-button-overlay-card>
+  <ng-template #itemRef let-item>
+    <aal-card-summary
+      [line1]="item?.status |  __name@camelCase__StatusLabel"
+      [line2Caption]="item?.modifiedOn"
+      [line3Caption]="item?.userId">
+    </aal-card-summary>
+  </ng-template>
+  <ng-template #iconDisplayRef>
+    <mat-icon >task_alt</mat-icon>
+  </ng-template>
+  <ng-template #largeAmountsRef>
+    <div fxLayout="column" fxFlexAlign="center center" fxLayoutAlign="center center"
+         class="aal--padding-all-r-5">
+      <span class="mat-subtitle-2">5 of {{$any($listDetails | async)?.length}} are shown</span>
+    </div>
+  </ng-template>
+<span>

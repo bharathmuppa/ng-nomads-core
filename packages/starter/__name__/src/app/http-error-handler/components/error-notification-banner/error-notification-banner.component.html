@@ -1,0 +1,14 @@
+<div class="iam-notification-banner-container">
+  <h2>Error</h2>
+  <div class="notification-content" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="0.5rem">
+    <div fxLayout="row" fxLayoutAlign="start start" *ngFor="let error of uniqueErrors;let i=index" fxLayoutGap="0.5rem">
+      <span class="label" *ngIf="uniqueErrors && uniqueErrors.length>1">{{i + 1}}.</span>
+      <span [innerHTML]="error?.message" class="error-text"></span>
+    </div>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="end end">
+    <aal-button-outlined (onClick)="closeBanner()"
+                         [color]="'accent'"
+                         name="Dismiss"></aal-button-outlined>
+  </div>
+</div>

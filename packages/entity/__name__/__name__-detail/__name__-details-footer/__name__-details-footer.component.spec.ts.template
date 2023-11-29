@@ -1,0 +1,21 @@
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+
+import { __name@upperCamelCase__DetailsFooterComponent} from './__name__-details-footer.component';
+
+describe(' __name@upperCamelCase__DetailsFooterComponent', () => {
+  let component:  __name@upperCamelCase__DetailsFooterComponent;
+  let fixture: ComponentFixture< __name@upperCamelCase__DetailsFooterComponent>;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [ __name@upperCamelCase__DetailsFooterComponent]
+    });
+    fixture = TestBed.createComponent( __name@upperCamelCase__DetailsFooterComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

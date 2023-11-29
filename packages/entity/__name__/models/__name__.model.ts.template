@@ -1,0 +1,26 @@
+import {User, Users} from "./user.model";
+
+
+export interface __name@upperCamelCase__ {
+  id: string;
+  title: string;
+  status: string;
+
+
+  last_modified_on: Date;
+  last_modified_by: User;
+  created_on: Date;
+  created_by: User;
+  
+  // Add more properties here
+
+}
+
+export interface  __name@upperCamelCase__sDto {
+  total_elements: number,
+  total_pages: number,
+  has_next: boolean,
+  results:  __name@upperCamelCase__s
+}
+
+export type  __name@upperCamelCase__s =  __name@upperCamelCase__[];

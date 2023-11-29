@@ -1,0 +1,32 @@
+<mat-toolbar mat-dialog-title color="primary"
+             class="!flex !flex-row justify-start !items-center ">
+
+  <span class="color-white">Case Action Detail</span>
+  <span class="flex-auto"></span>
+  <mat-icon mat-dialog-close>close</mat-icon>
+</mat-toolbar>
+<mat-dialog-content class="!flex !flex-row w-full">
+  <div class="flex flex-col justify-start items-stretch !m-4 gap-4 flex-[1_1_50%]">
+    <aal-input-text [ID]="'case_action_property'"
+                        [control]="$any(caseActionDetailFormControl)!.get(propertyName)"
+                        [mode]="Modes.EDIT"
+                        [lockMode]="Modes.EDIT"
+                        [placeholder]="'Enter ' + propertyLabel"
+                        [label]="propertyLabel" [confirmToolBarNotApplicable]="true">
+    </aal-input-text>
+<!--    <aal-rich-text-area [ID]="'case_action_property'"
+                        [control]="$any(caseActionDetailFormControl)!.get(propertyName)"
+                        [mode]="Modes.EDIT"
+                        [lockMode]="Modes.EDIT"
+                        [placeholder]="'Enter ' + propertyLabel"
+                        [label]="propertyLabel" [confirmToolBarNotApplicable]="true">
+    </aal-rich-text-area>-->
+
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <div class="!flex !flex-row justify-end items-center gap-4 w-full">
+    <button mat-raised-button color="accent" (click)="save()">Save</button>
+  </div>
+</mat-dialog-actions>
+

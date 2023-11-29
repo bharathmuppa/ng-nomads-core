@@ -1,0 +1,115 @@
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  NgZone,
+  OnInit,
+  ViewChild
+} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {MatDividerModule} from "@angular/material/divider";
+import {
+  AALAnalyticsPanelModule,
+  AALButtonOverlayCardModule,
+  AALButtonOverlayTabbedModule,
+  AALEmptyStateModule,
+  AALOverlayCardHelpModule
+} from "@ng-nomads-angular/material";
+import {MatListModule} from "@angular/material/list";
+import {MatButtonModule} from "@angular/material/button";
+import {Store} from "@ngrx/store";
+import {MatIconModule} from "@angular/material/icon";
+import {
+  CdkFixedSizeVirtualScroll,
+  CdkVirtualForOf,
+  CdkVirtualScrollViewport,
+  ScrollingModule
+} from "@angular/cdk/scrolling";
+import {ActivatedRoute, Router} from "@angular/router";
+import {MatTooltipModule} from "@angular/material/tooltip";
+import {filter, map, Observable, pairwise, throttleTime} from "rxjs";
+
+import {__name@upperCamelCase__State} from "../store/model";
+import {__name@upperCamelCase__Service} from "../core/api/__name__.service";
+import {__name@camelCase__sEntityActions} from "../store/actions";
+import {__name@upperCase___STATUS} from "../models/__name@camelCase__-status.enum";
+import {Cards} from "./model/analytic-panel";
+import {AnalyticPanelAdapter} from "./adapter/analytic-panel.adapter";
+import {__name@upperCamelCase__, __name@upperCamelCase__s, __name@upperCamelCase__sDto} from "../models/__name@camelCase__.model";
+
+import {
+  __name@upperCamelCase__AuditButtonComponent
+} from "../__name__-audit/__name__-audit-button/__name__-audit-button.component";
+import {__name@upperCamelCase__SummaryComponent} from "../__name__-summary/__name__-summary.component";
+
+@Component({
+  selector: 'app-__name__-list',
+  standalone: true,
+  imports: [CommonModule, MatDividerModule, AALOverlayCardHelpModule, AALAnalyticsPanelModule, MatListModule, MatButtonModule,
+    MatIconModule, AALButtonOverlayCardModule, AALEmptyStateModule, ScrollingModule, CdkFixedSizeVirtualScroll,
+    CdkVirtualForOf, MatTooltipModule, AALButtonOverlayTabbedModule,
+    __name@upperCamelCase__AuditButtonComponent, __name@upperCamelCase__SummaryComponent],
+  templateUrl: './__name__-list.component.html',
+  styleUrls: ['./__name__-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class __name@upperCamelCase__ListComponent implements OnInit, AfterViewInit {
+  $panelDataMultiple!: Observable<Cards>;
+  __name@camelCase__s: __name@upperCamelCase__s = [];
+  @ViewChild('scroller') scroller!: CdkVirtualScrollViewport;
+  size = 10;
+  page = 0;
+  hasNext = true;
+
+  constructor(private __name@camelCase__Store: Store<{
+    __name@camelCase__State: __name@upperCamelCase__State
+  }>, private __name@camelCase__sService: __name@upperCamelCase__Service, private cd: ChangeDetectorRef, private router: Router, private currentRoute: ActivatedRoute, private ngZone: NgZone) {
+  }
+
+  ngAfterViewInit(): void {
+    this.scroller.elementScrolled().pipe(
+      map(() => this.scroller.measureScrollOffset('bottom')),
+      pairwise(),
+      filter(([y1, y2]) => (y2 < y1 && y2 < 190)),
+      throttleTime(200)
+    ).subscribe(() => {
+        this.ngZone.run(() => {
+          this.get__name@upperCamelCase__s();
+        });
+      }
+    );
+  }
+
+  getStateOverview() {
+    this.$panelDataMultiple = AnalyticPanelAdapter.transform(this.__name@camelCase__sService.getStateCountOverview());
+  }
+
+  get__name@upperCamelCase__s() {
+    if(!this.hasNext) {
+      return;
+    }
+    this.__name@camelCase__sService.get__name@upperCamelCase__s(this.page, this.size).subscribe((__name@camelCase__sDto: __name@upperCamelCase__sDto) => {
+      this.__name@camelCase__s= [...this.__name@camelCase__s, ...__name@camelCase__sDto.results];
+      this.hasNext = __name@camelCase__sDto.has_next;
+      this.page++;
+      this.__name@camelCase__Store.dispatch(__name@camelCase__sEntityActions.__name@camelCase__sListLoaded(this.__name@camelCase__s));
+      this.cd.markForCheck();
+    })
+  }
+
+  unique__name@upperCamelCase__(index: number, item: __name@upperCamelCase__) {
+    return item.id;
+  }
+
+
+  async open__name@upperCamelCase__Details(__name@camelCase__: __name@upperCamelCase__) {
+    await this.router.navigate([`${__name@camelCase__?.id}`], {relativeTo: this.currentRoute})
+  }
+
+  ngOnInit() {
+    this.getStateOverview();
+    this.get__name@upperCamelCase__s();
+  }
+
+}

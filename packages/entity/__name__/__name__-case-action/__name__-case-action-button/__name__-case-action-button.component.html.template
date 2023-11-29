@@ -1,0 +1,2 @@
+<aal-button-contained [name]="caseAction!.case_action | caseActionLabel"
+                      (onClick)="onButtonClick(caseAction!.case_action)"></aal-button-contained>

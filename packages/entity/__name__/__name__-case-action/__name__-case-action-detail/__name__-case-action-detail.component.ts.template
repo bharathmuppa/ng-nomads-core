@@ -1,0 +1,58 @@
+import {ChangeDetectionStrategy, Component, Inject} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {
+  AALAutoCompleteSingleModule,
+  AALButtonToggleModule,
+  AALInputTextModule,
+  AALRichTextAreaModule
+} from "@ng-nomads-angular/material";
+import {MatButtonModule} from "@angular/material/button";
+import {MAT_DIALOG_DATA, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
+import {MatIconModule} from "@angular/material/icon";
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {FormBuilder, FormGroup} from "@angular/forms";
+import {Modes} from "@ng-nomads-angular/common";
+
+import {CaseActionConfig} from "../../models/case-actions.model";
+
+@Component({
+  selector: 'app-__name__-case-action-detail',
+  standalone: true,
+  imports: [CommonModule, AALAutoCompleteSingleModule, AALButtonToggleModule, AALInputTextModule, MatButtonModule, MatDialogModule, MatIconModule, MatToolbarModule, AALRichTextAreaModule],
+  templateUrl: './__name__-case-action-detail.component.html',
+  styleUrls: ['./__name__-case-action-detail.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class  __name@upperCamelCase__CaseActionDetailComponent {
+
+  caseActionDetailFormControl!: FormGroup;
+  propertyName!: string;
+  propertyLabel!: string;
+
+  constructor(private fb: FormBuilder,
+              public dialogRef: MatDialogRef< __name@upperCamelCase__CaseActionDetailComponent>, @Inject(MAT_DIALOG_DATA) public data: {
+       __name@camelCase__Id: string,
+      caseActionConfig: CaseActionConfig
+    }) {
+    this.propertyName = this.data!.caseActionConfig!.payload!.property;
+    this.propertyLabel = this.data!.caseActionConfig!.payload!.propertyLabel;
+
+    if (!this.propertyName) {
+      return;
+    }
+    this.caseActionDetailFormControl = this.fb.group({
+      [this.propertyName]: ''
+    });
+  }
+
+  protected readonly Modes = Modes;
+
+  save() {
+    if (this.caseActionDetailFormControl.invalid) {
+      this.caseActionDetailFormControl.markAsDirty();
+      return;
+    }
+    this.dialogRef.close({data: this.caseActionDetailFormControl.value});
+  }
+
+}

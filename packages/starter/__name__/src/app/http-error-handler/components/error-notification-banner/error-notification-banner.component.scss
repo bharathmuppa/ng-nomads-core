@@ -1,0 +1,27 @@
+.iam-notification-banner-container {
+  padding: 1rem !important;
+}
+
+::ng-deep {
+  .mat-mdc-dialog-container {
+    box-shadow: none;
+    border: 1px solid #e5e0e0;
+    border-radius: 6px;
+  }
+
+  snack-bar-container.severity-two {
+    height: auto;
+    min-height: auto;
+    background-color: white;
+    color: black;
+    width: 700px;
+    min-width: 300px;
+    margin-top: 0;
+  }
+}
+
+.notification-content {
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+

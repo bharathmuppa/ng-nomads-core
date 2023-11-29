@@ -1,0 +1,24 @@
+import {Pipe, PipeTransform} from "@angular/core";
+
+import {__name@upperCase___STATUS} from "../../models/__name__-status.enum";
+
+@Pipe({
+  name: '__name@camelCase__StatusLabel',
+  standalone: true
+})
+export class __name@upperCamelCase__StatusLabelPipe implements PipeTransform {
+
+  public transform(status: __name@upperCase___STATUS | undefined): string {
+    if (statusIn === undefined || statusIn === null || (""+statusIn).trim() === "") {
+      return "";
+    }
+    const status: number = +statusIn;
+   /*
+   Write your own logic based on the status
+    if (status === __name@upperCase___STATUS.DRAFT)
+      return "Proposed";
+      */
+    return "";
+  }
+
+}

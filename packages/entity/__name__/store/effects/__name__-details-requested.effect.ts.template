@@ -1,0 +1,42 @@
+import {Actions, createEffect, ofType} from "@ngrx/effects";
+import {inject} from "@angular/core";
+import {catchError, forkJoin, of, switchMap} from "rxjs";
+
+import { __name@upperCamelCase__Service} from "../../core/api/__name__.service";
+import {API_STATUS, __name@camelCase__sEntityActions} from "../actions";
+
+
+export const __name@camelCase__DetailsRequestedEffects = createEffect(
+  (
+    actions$ = inject(Actions),
+    __name@camelCase__Service = inject( __name@upperCamelCase__Service)
+  ) => {
+    return actions$.pipe(
+      ofType(__name@camelCase__sEntityActions.__name@camelCase__DetailsRequested),
+      switchMap((action) => {
+        return forkJoin({
+          __name@camelCase__Details: __name@camelCase__Service.get__name@upperCamelCase__(action.__name@camelCase__Id),
+          __name@camelCase__CaseProperties: __name@camelCase__Service.getCaseProperties(action.__name@camelCase__Id),
+          __name@camelCase__CaseActions: __name@camelCase__Service.getCaseActions(action.__name@camelCase__Id)
+        })
+      }),
+      switchMap((res) => {
+        // make sure that we only return reducer actions not actions with effects
+        return of(
+          __name@camelCase__sEntityActions.__name@camelCase__DetailsRequestCompleted(res.__name@camelCase__Details),
+          __name@camelCase__sEntityActions.__name@camelCase__DetailsLoadingStatus(API_STATUS.COMPLETED),
+          __name@camelCase__sEntityActions.__name@camelCase__CasePropertiesRequestCompleted(res.__name@camelCase__CaseProperties),
+          __name@camelCase__sEntityActions.__name@camelCase__CaseActionsRequestCompleted(res.__name@camelCase__CaseActions),
+          __name@camelCase__sEntityActions.__name@camelCase__CaseActionsRequestLoadingStatus(API_STATUS.COMPLETED))
+      }),
+      catchError(() => {
+        // make sure that we only return reducer actions not actions with effects
+        return of(
+          __name@camelCase__sEntityActions.__name@camelCase__DetailsLoadingStatus(API_STATUS.FAILED),
+          __name@camelCase__sEntityActions.__name@camelCase__CaseActionsRequestLoadingStatus(API_STATUS.FAILED)
+        );
+      })
+    );
+  },
+  {functional: true}
+);
