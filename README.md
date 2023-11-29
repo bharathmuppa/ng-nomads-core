@@ -1,0 +1,1 @@
+# ng-nomads-core
